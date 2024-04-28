@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common'
 import { SchedulesService } from './schedules.service'
 import { CreateScheduleDto } from './dto/create-schedule.dto'
 
@@ -7,8 +7,8 @@ export class SchedulesController {
   constructor(private schedulesService: SchedulesService) {}
 
   @Get()
-  find() {
-    return this.schedulesService.find()
+  findByDate(@Query() query: { date: string }) {
+    return this.schedulesService.findByDate(query.date)
   }
 
   @Post()

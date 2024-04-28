@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
-GET {{baseUrl}}/schedules
+GET {{baseUrl}}/schedules?date=2024-04-30
 
 ###
 
@@ -9,6 +9,6 @@ Content-Type: application/json
 
 {    
   "client": "Clodoaldo Dantas",
-  "date": "2024-04-29",
-  "time": "09:30"
+  "date": "2024-04-30",
+  "time": "08:00"
 }

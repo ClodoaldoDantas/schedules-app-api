@@ -8,8 +8,15 @@ import * as dayjs from 'dayjs'
 export class SchedulesService {
   constructor(private prisma: PrismaService) {}
 
-  find() {
-    return this.prisma.scheduling.findMany()
+  findByDate(date: string) {
+    return this.prisma.scheduling.findMany({
+      where: {
+        date: dayjs(date).toDate(),
+      },
+      orderBy: {
+        time: 'asc',
+      },
+    })
   }
 
   async create(payload: CreateScheduleDto) {
