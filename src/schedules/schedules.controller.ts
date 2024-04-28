@@ -14,6 +14,6 @@ export class SchedulesController {
   @Post()
   @HttpCode(201)
   create(@Body() createScheduleDto: CreateScheduleDto) {
-    this.schedulesService.create(createScheduleDto)
+    return this.schedulesService.create(createScheduleDto)
   }
 }

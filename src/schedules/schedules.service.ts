@@ -1,13 +1,24 @@
 import { Injectable } from '@nestjs/common'
 import { CreateScheduleDto } from './dto/create-schedule.dto'
+import { PrismaService } from 'src/database/prisma.service'
+import { convertHourToMinutes } from 'src/utils/convert-hour-to-minutes'
+import * as dayjs from 'dayjs'
 
 @Injectable()
 export class SchedulesService {
+  constructor(private prisma: PrismaService) {}
+
   find() {
-    return []
+    return this.prisma.scheduling.findMany()
   }
 
-  create(data: CreateScheduleDto) {
-    return data
+  async create(payload: CreateScheduleDto) {
+    await this.prisma.scheduling.create({
+      data: {
+        client: payload.client,
+        date: dayjs(payload.date).toDate(),
+        time: convertHourToMinutes(payload.time),
+      },
+    })
   }
 }

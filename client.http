@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/schedules
+
+###
+
+POST {{baseUrl}}/schedules
+Content-Type: application/json
+
+{    
+  "client": "Clodoaldo Dantas",
+  "date": "2024-04-29",
+  "time": "09:30"
+}
