@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common'
+import { CreateScheduleDto } from './dto/create-schedule.dto'
 
 @Injectable()
 export class SchedulesService {
-  private readonly schedules: any[] = []
+  find() {
+    return []
+  }
 
-  findByDate(): any[] {
-    return this.schedules
+  create(data: CreateScheduleDto) {
+    return data
   }
 }
