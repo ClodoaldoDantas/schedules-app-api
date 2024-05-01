@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
-GET {{baseUrl}}/schedules?date=2024-04-30
+GET {{baseUrl}}/schedules?date=2024-05-01
 
 ###
 
