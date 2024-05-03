@@ -28,4 +28,12 @@ export class SchedulesService {
       },
     })
   }
+
+  async delete(id: string) {
+    await this.prisma.scheduling.delete({
+      where: {
+        id,
+      },
+    })
+  }
 }

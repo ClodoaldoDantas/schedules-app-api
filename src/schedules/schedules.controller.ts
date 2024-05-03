@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
+  Param,
   Post,
   Query,
   UsePipes,
@@ -31,5 +33,11 @@ export class SchedulesController {
   @UsePipes(new ZodValidationPipe(createScheduleSchema))
   create(@Body() createScheduleDto: CreateScheduleDto) {
     return this.schedulesService.create(createScheduleDto)
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  delete(@Param('id') id: string) {
+    return this.schedulesService.delete(id)
   }
 }

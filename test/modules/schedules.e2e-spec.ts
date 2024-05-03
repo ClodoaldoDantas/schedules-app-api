@@ -58,6 +58,30 @@ describe('Schedules', () => {
     expect(schedulingOnDatabase).toBeTruthy()
   })
 
+  it(`/DELETE schedules`, async () => {
+    const scheduling = await prisma.scheduling.create({
+      data: {
+        client: 'John Doe',
+        date: dayjs('2024-05-10').toDate(),
+        time: 480,
+      },
+    })
+
+    const response = await request(app.getHttpServer())
+      .delete(`/schedules/${scheduling.id}`)
+      .send()
+
+    expect(response.statusCode).toBe(204)
+
+    const schedulingOnDatabase = await prisma.scheduling.findFirst({
+      where: {
+        id: scheduling.id,
+      },
+    })
+
+    expect(schedulingOnDatabase).toBeNull()
+  })
+
   afterAll(async () => {
     await app.close()
   })
